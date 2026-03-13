@@ -111,7 +111,7 @@ export default function Home() {
   const [loading, setLoading]             = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/products`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data) && data.length > 0) setProducts(data);
@@ -136,31 +136,21 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black">
 
-      {/* ═══ HERO ═══ */}
+      {/* HERO */}
       <div className="bg-black text-white relative overflow-hidden">
-        {/* subtle grid pattern */}
         <div className="absolute inset-0 opacity-5"
           style={{backgroundImage:"linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize:"40px 40px"}}/>
-
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 flex flex-col items-center text-center">
-
           <div className="border border-white/20 text-xs font-bold px-5 py-2 rounded-full uppercase tracking-widest mb-8 text-gray-400">
             🇵🇰 Pakistan's Premier Fashion Destination
           </div>
-
-          <h1 className="text-7xl font-black mb-2 tracking-tight leading-none">
-            BUKHARI'S
-          </h1>
-          <h2 className="text-7xl font-black mb-6 tracking-tight leading-none text-white/20">
-            STORE
-          </h2>
+          <h1 className="text-7xl font-black mb-2 tracking-tight leading-none">BUKHARI'S</h1>
+          <h2 className="text-7xl font-black mb-6 tracking-tight leading-none text-white/20">STORE</h2>
           <div className="w-16 h-px bg-white mb-8"/>
-
           <p className="text-gray-400 text-lg max-w-xl mb-10 leading-relaxed">
             Premium fashion for the whole family.<br/>
             <span className="text-white font-semibold">Men • Women • Boys • Girls</span>
           </p>
-
           <div className="flex gap-3 flex-wrap justify-center mb-14">
             <button onClick={scrollTo}
               className="bg-white text-black font-bold px-8 py-3 rounded-full hover:bg-gray-100 transition-all hover:scale-105 shadow-lg">
@@ -174,7 +164,6 @@ export default function Home() {
               </button>
             ))}
           </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-2xl">
             {[{v:"14+",l:"Top Brands"},{v:"90+",l:"Products"},{v:"50K+",l:"Customers"},{v:"All PK",l:"Delivery"}].map(s => (
               <div key={s.l} className="border border-white/10 bg-white/5 rounded-2xl p-5 text-center">
@@ -186,7 +175,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ═══ PROMO BAR ═══ */}
+      {/* PROMO BAR */}
       <div className="bg-black border-y border-gray-800 text-white text-center py-3 px-4 text-xs font-semibold tracking-widest uppercase">
         🚚 Free Delivery above Rs. 5,000 &nbsp;|&nbsp; 🎁 Code
         <span className="bg-white text-black px-2 py-0.5 rounded font-black mx-1">BUKHARI10</span>
@@ -195,7 +184,7 @@ export default function Home() {
 
       <div className="max-w-7xl mx-auto px-4 py-10">
 
-        {/* ═══ CATEGORY CARDS ═══ */}
+        {/* CATEGORY CARDS */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
           {[
             {label:"Men's Fashion",    emoji:"👔", desc:"Clothing, Shoes & More",  cat:"Men"},
@@ -217,7 +206,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ═══ BRANDS ═══ */}
+        {/* BRANDS */}
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-1 h-5 bg-black rounded-full"/>
@@ -245,7 +234,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ═══ CATEGORY TABS ═══ */}
+        {/* CATEGORY TABS */}
         <div className="flex gap-2 flex-wrap mb-6">
           {categories.map(c => (
             <button key={c} onClick={() => setCategory(c)}
@@ -259,7 +248,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* ═══ SEARCH ═══ */}
+        {/* SEARCH */}
         <div className="relative mb-8">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg">🔍</span>
           <input type="text" placeholder="Search products or brands..."
@@ -271,7 +260,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* ═══ PRODUCTS HEADER ═══ */}
+        {/* PRODUCTS HEADER */}
         <div id="products" className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-black text-black">
@@ -292,7 +281,7 @@ export default function Home() {
           )}
         </div>
 
-        {/* ═══ PRODUCTS GRID ═══ */}
+        {/* PRODUCTS GRID */}
         {loading ? (
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin"/>
@@ -315,7 +304,7 @@ export default function Home() {
         )}
       </div>
 
-      {/* ═══ FOOTER ═══ */}
+      {/* FOOTER */}
       <div className="bg-black text-white py-14 px-4 text-center">
         <h3 className="text-4xl font-black mb-1 tracking-tight">BUKHARI'S</h3>
         <p className="text-gray-500 text-xs font-bold tracking-widest uppercase mb-6">Premium Pakistani Fashion</p>
