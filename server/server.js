@@ -1,9 +1,7 @@
 import dns from "node:dns";
-// Force Node.js to use Google DNS servers - MUST be first!
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 console.log("DNS servers set to:", dns.getServers());
 
-// Now your regular imports - each only ONCE
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -12,6 +10,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import seedRouter from "./routes/seedRoute.js";
 
 dotenv.config();
 connectDB();
@@ -24,6 +23,7 @@ app.use(cors({
     "http://localhost:5174",
     "http://localhost:5175",
     "http://localhost:5176",
+    "https://bukhari-s-store-4w4g.vercel.app",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -35,6 +35,7 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api", seedRouter);
 
 app.get("/", (req, res) => res.send("Bukhari Store API Running ✅"));
 
