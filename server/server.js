@@ -1,4 +1,11 @@
+import dns from "node:dns";
+// Force Node.js to use Google DNS servers - MUST be first!
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+console.log("DNS servers set to:", dns.getServers());
+
+// Now your regular imports - each only ONCE
 import express from "express";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
